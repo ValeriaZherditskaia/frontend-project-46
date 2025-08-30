@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   lint-and-test:
@@ -14,7 +14,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0        # необходимо для релевантности анализа
+          fetch-depth: 0 # необходимо для релевантности анализа
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -31,16 +31,16 @@ jobs:
         run: make test
 
       - name: Upload coverage report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: coverage-report
           path: coverage/
 
       - name: SonarCloud Scan
-        uses: sonarsource/sonarcloud-github-action@v1.7.0
+        uses: sonarsource/sonarcloud-github-action@v1
         with:
           organization: ${{ secrets.SONAR_ORGANIZATION }}
-          projectKey:    ${{ secrets.SONAR_PROJECT_KEY }}
-          token:         ${{ secrets.SONAR_TOKEN }}
+          projectKey: ${{ secrets.SONAR_PROJECT_KEY }}
+          token: ${{ secrets.SONAR_TOKEN }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
