@@ -1,3 +1,4 @@
 node_modules/
 # Asciinema recording
 *.cast
+coverage/
