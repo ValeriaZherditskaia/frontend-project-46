@@ -17,7 +17,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
 
@@ -37,7 +37,7 @@ jobs:
           path: coverage/
 
       - name: SonarCloud Scan
-        uses: sonarsource/sonarcloud-github-action@v1
+        uses: sonarsource/sonarcloud-github-action@v2
         with:
           args: >
             -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
