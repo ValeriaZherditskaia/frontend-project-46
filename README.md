@@ -13,5 +13,8 @@
 Сравнение JSON-файлов:
 https://asciinema.org/a/Aq7qxTm8ku96DNPqz99HzZNm6
 
-Сравнение yaml-файлов:
+Сравнение YAML-файлов:
 https://asciinema.org/a/3W1rr75sDzk1EAz5yX1ye9rsF
+
+Сравнение вложенных структур файлов. Формат - 'stylish'
+https://asciinema.org/a/6UUFALOTMv4iFde2xrMTXPmwx
