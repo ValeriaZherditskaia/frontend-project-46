@@ -1,9 +1,7 @@
-/* eslint-disable @stylistic/arrow-parens */
-/* eslint-disable @stylistic/comma-dangle */
-
 const indent = (depth) => ' '.repeat(depth * 4 - 2) // Для строк с '+' и '-'
 const blockIndent = (depth) => ' '.repeat(depth * 4) // Для остальных строк
 
+// Преобразует значение в строку
 const formatValue = (value, depth) => {
   if (value !== null && typeof value === 'object') {
     const lines = Object.entries(value).map(([entryKey, entryVal]) => {
@@ -15,6 +13,7 @@ const formatValue = (value, depth) => {
   return String(value)
 }
 
+// Форматирует один узел из дерева различий
 const formatNode = (node, depth) => {
   const { key, status } = node
 
@@ -43,6 +42,7 @@ const formatNode = (node, depth) => {
   }
 }
 
+// Форматирование всего дерева
 const formatStylish = (tree) => {
   const lines = tree.map((treeNode) => formatNode(treeNode, 1))
   return `{\n${lines.join('\n')}\n}`

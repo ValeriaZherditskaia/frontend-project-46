@@ -18,3 +18,6 @@ https://asciinema.org/a/3W1rr75sDzk1EAz5yX1ye9rsF
 
 Сравнение вложенных структур файлов. Формат - 'stylish'
 https://asciinema.org/a/6UUFALOTMv4iFde2xrMTXPmwx
+
+Сравнение вложенных структур файлов. Формат - 'plain'
+https://asciinema.org/a/ORFETlGnLYFOCiDRlF9bGJEWt

@@ -6,30 +6,58 @@ import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const fixtureDir = path.join(__dirname, '..', '__fixtures__')
-const expectedPlainPath = path.join(fixtureDir, 'expected_plain.txt')
+const inputDir = path.join(fixtureDir, 'input')
+const expectedDir = path.join(fixtureDir, 'expected')
 
-test('gendiff для плоских JSON-файлов', () => {
-  const filepath1 = path.join(fixtureDir, 'file1.json')
-  const filepath2 = path.join(fixtureDir, 'file2.json')
-  const expected = fs.readFileSync(expectedPlainPath, 'utf-8').trim()
-  const actual = genDiff(filepath1, filepath2).trim()
+const expectedStylish = fs
+  .readFileSync(path.join(expectedDir, 'expected_stylish.txt'), 'utf-8')
+  .trim()
+const expectedPlain = fs
+  .readFileSync(path.join(expectedDir, 'expected_plain.txt'), 'utf-8')
+  .trim()
 
-  expect(actual).toBe(expected)
+describe('stylish format', () => {
+  test('JSON files', () => {
+    const file1 = path.join(inputDir, 'file1.json')
+    const file2 = path.join(inputDir, 'file2.json')
+    const actual = genDiff(file1, file2, 'stylish').trim()
+    expect(actual).toBe(expectedStylish)
+  })
+
+  test('YAML files (.yml)', () => {
+    const file1 = path.join(inputDir, 'file1.yml')
+    const file2 = path.join(inputDir, 'file2.yml')
+    const actual = genDiff(file1, file2, 'stylish').trim()
+    expect(actual).toBe(expectedStylish)
+  })
+
+  test('YAML files (.yaml)', () => {
+    const file1 = path.join(inputDir, 'file1.yaml')
+    const file2 = path.join(inputDir, 'file2.yaml')
+    const actual = genDiff(file1, file2, 'stylish').trim()
+    expect(actual).toBe(expectedStylish)
+  })
 })
 
-test('gendiff для плоских YAML-файлов (.yml)', () => {
-  const filepath1 = path.join(fixtureDir, 'file1.yml')
-  const filepath2 = path.join(fixtureDir, 'file2.yml')
-  const expected = fs.readFileSync(expectedPlainPath, 'utf-8').trim()
-  const actual = genDiff(filepath1, filepath2).trim()
+describe('plain format', () => {
+  test('JSON files', () => {
+    const file1 = path.join(inputDir, 'file1.json')
+    const file2 = path.join(inputDir, 'file2.json')
+    const actual = genDiff(file1, file2, 'plain').trim()
+    expect(actual).toBe(expectedPlain)
+  })
 
-  expect(actual).toBe(expected)
-})
+  test('YAML files (.yml)', () => {
+    const file1 = path.join(inputDir, 'file1.yml')
+    const file2 = path.join(inputDir, 'file2.yml')
+    const actual = genDiff(file1, file2, 'plain').trim()
+    expect(actual).toBe(expectedPlain)
+  })
 
-test('gendiff для плоских YAML-файлов (.yaml)', () => {
-  const filepath1 = path.join(fixtureDir, 'file1.yaml')
-  const filepath2 = path.join(fixtureDir, 'file2.yaml')
-  const expected = fs.readFileSync(expectedPlainPath, 'utf-8').trim()
-  const actual = genDiff(filepath1, filepath2).trim()
-  expect(actual).toBe(expected)
+  test('YAML files (.yaml)', () => {
+    const file1 = path.join(inputDir, 'file1.yaml')
+    const file2 = path.join(inputDir, 'file2.yaml')
+    const actual = genDiff(file1, file2, 'plain').trim()
+    expect(actual).toBe(expectedPlain)
+  })
 })
