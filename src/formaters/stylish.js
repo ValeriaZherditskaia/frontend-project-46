@@ -1,5 +1,5 @@
-const indent = (depth) => ' '.repeat(depth * 4 - 2) // Для строк с '+' и '-'
-const blockIndent = (depth) => ' '.repeat(depth * 4) // Для остальных строк
+const indent = depth => ' '.repeat(depth * 4 - 2) // Для строк с '+' и '-'
+const blockIndent = depth => ' '.repeat(depth * 4) // Для остальных строк
 
 // Преобразует значение в строку
 const formatValue = (value, depth) => {
@@ -8,8 +8,9 @@ const formatValue = (value, depth) => {
       const spaces = ' '.repeat((depth + 1) * 4)
       return `${spaces}${entryKey}: ${formatValue(entryVal, depth + 1)}`
     })
-    return `{\n${lines.join('\n')}\n${blockIndent(depth)}}`
+    return `{\n${lines.join('\n')}\n${blockIndent(depth)},`
   }
+
   return String(value)
 }
 
@@ -30,12 +31,12 @@ const formatNode = (node, depth) => {
         `${indent(depth)}+ ${key}: ${formatValue(node.newValue, depth)}`,
       ].join('\n')
     case 'nested': {
-      const childLines = node.children.map((childNode) =>
-        formatNode(childNode, depth + 1)
+      const childLines = node.children.map(childNode =>
+        formatNode(childNode, depth + 1),
       )
       return `${blockIndent(depth)}${key}: {\n${childLines.join(
-        '\n'
-      )}\n${blockIndent(depth)}}`
+        '\n',
+      )}\n${blockIndent(depth)}},`
     }
     default:
       throw new Error(`Unknown status: ${status}`)
@@ -44,7 +45,7 @@ const formatNode = (node, depth) => {
 
 // Форматирование всего дерева
 const formatStylish = (tree) => {
-  const lines = tree.map((treeNode) => formatNode(treeNode, 1))
+  const lines = tree.map(treeNode => formatNode(treeNode, 1))
   return `{\n${lines.join('\n')}\n}`
 }
 

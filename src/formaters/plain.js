@@ -17,13 +17,13 @@ const formatPlain = (tree, parentPath = '') => {
     switch (status) {
       case 'added':
         return `Property '${property}' was added with value: ${toPlainValue(
-          node.value
+          node.value,
         )}`
       case 'removed':
         return `Property '${property}' was removed`
       case 'changed':
         return `Property '${property}' was updated. From ${toPlainValue(
-          node.oldValue
+          node.oldValue,
         )} to ${toPlainValue(node.newValue)}`
       case 'nested':
         return formatPlain(node.children, property)
