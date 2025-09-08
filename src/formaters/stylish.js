@@ -8,7 +8,7 @@ const formatValue = (value, depth) => {
       const spaces = ' '.repeat((depth + 1) * 4)
       return `${spaces}${entryKey}: ${formatValue(entryVal, depth + 1)}`
     })
-    return `{\n${lines.join('\n')}\n${blockIndent(depth)},`
+    return `{\n${lines.join('\n')}\n${blockIndent(depth)}}`
   }
 
   return String(value)
@@ -34,9 +34,7 @@ const formatNode = (node, depth) => {
       const childLines = node.children.map(childNode =>
         formatNode(childNode, depth + 1),
       )
-      return `${blockIndent(depth)}${key}: {\n${childLines.join(
-        '\n',
-      )}\n${blockIndent(depth)}},`
+      return `${blockIndent(depth)}${key}: {\n${childLines.join('\n')}\n${blockIndent(depth)}}`
     }
     default:
       throw new Error(`Unknown status: ${status}`)
