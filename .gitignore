@@ -2,3 +2,4 @@ node_modules/
 # Asciinema recording
 *.cast
 coverage/
+.vscode/settings.json
