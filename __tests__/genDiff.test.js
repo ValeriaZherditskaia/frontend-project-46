@@ -69,7 +69,7 @@ describe('json format', () => {
     const actual = genDiff(file1, file2, 'json').trim()
     const expected = fs
       .readFileSync(path.join(expectedDir, 'expected_json.txt'), 'utf-8')
-      .trim();
-    expect(JSON.parse(actual)).toEqual(JSON.parse(expected));
+      .trim()
+    expect(JSON.parse(actual)).toEqual(JSON.parse(expected))
   })
 })
