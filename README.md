@@ -50,17 +50,17 @@ gendiff -h
 
 ## Демонстрация работы
 
-Сравнение JSON-файлов: 
+Сравнение JSON-файлов:  
 https://asciinema.org/a/Aq7qxTm8ku96DNPqz99HzZNm6
 
-Сравнение YAML-файлов: 
+Сравнение YAML-файлов:  
 https://asciinema.org/a/3W1rr75sDzk1EAz5yX1ye9rsF
 
-Сравнение вложенных структур файлов. Формат - "stylish"
+Сравнение вложенных структур файлов. Формат - "stylish"  
 https://asciinema.org/a/6UUFALOTMv4iFde2xrMTXPmwx
 
-Сравнение вложенных структур файлов. Формат - "plain"
+Сравнение вложенных структур файлов. Формат - "plain"  
 https://asciinema.org/a/ORFETlGnLYFOCiDRlF9bGJEWt
 
-Сравнение вложенных структур файлов. Формат - "json"
+Сравнение вложенных структур файлов. Формат - "json"  
 https://asciinema.org/a/40OOO8b9whQOBcBoFJ044R8JD
