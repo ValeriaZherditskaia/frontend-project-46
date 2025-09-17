@@ -4,7 +4,7 @@ import formatJson from './json.js'
 
 const formatters = {
   stylish: formatStylish,
-  plain: (tree) => formatPlain(tree).join('\n'),
+  plain: tree => formatPlain(tree).join('\n'),
   json: formatJson,
 }
 
