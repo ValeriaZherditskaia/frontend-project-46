@@ -9,67 +9,49 @@ const fixtureDir = path.join(__dirname, '..', '__fixtures__')
 const inputDir = path.join(fixtureDir, 'input')
 const expectedDir = path.join(fixtureDir, 'expected')
 
-const expectedStylish = fs
-  .readFileSync(path.join(expectedDir, 'expected_stylish.txt'), 'utf-8')
-  .trim()
-const expectedPlain = fs
-  .readFileSync(path.join(expectedDir, 'expected_plain.txt'), 'utf-8')
-  .trim()
-
 describe('stylish format', () => {
-  test('JSON files', () => {
-    const file1 = path.join(inputDir, 'file1.json')
-    const file2 = path.join(inputDir, 'file2.json')
-    const actual = genDiff(file1, file2, 'stylish').trim()
-    expect(actual).toBe(expectedStylish)
-  })
+  const expectedStylish = fs
+    .readFileSync(path.join(expectedDir, 'expected_stylish.txt'), 'utf-8')
+    .trim()
 
-  test('YAML files (.yml)', () => {
-    const file1 = path.join(inputDir, 'file1.yml')
-    const file2 = path.join(inputDir, 'file2.yml')
-    const actual = genDiff(file1, file2, 'stylish').trim()
-    expect(actual).toBe(expectedStylish)
-  })
-
-  test('YAML files (.yaml)', () => {
-    const file1 = path.join(inputDir, 'file1.yaml')
-    const file2 = path.join(inputDir, 'file2.yaml')
-    const actual = genDiff(file1, file2, 'stylish').trim()
+  test.each([
+    ['JSON files', 'file1.json', 'file2.json'],
+    ['YAML files (.yml)', 'file1.yml', 'file2.yml'],
+    ['YAML files (.yaml)', 'file1.yaml', 'file2.yaml'],
+  ])('%s', (_, file1, file2) => {
+    const filepath1 = path.join(inputDir, file1)
+    const filepath2 = path.join(inputDir, file2)
+    const actual = genDiff(filepath1, filepath2, 'stylish').trim()
     expect(actual).toBe(expectedStylish)
   })
 })
 
 describe('plain format', () => {
-  test('JSON files', () => {
-    const file1 = path.join(inputDir, 'file1.json')
-    const file2 = path.join(inputDir, 'file2.json')
-    const actual = genDiff(file1, file2, 'plain').trim()
-    expect(actual).toBe(expectedPlain)
-  })
+  const expectedPlain = fs
+    .readFileSync(path.join(expectedDir, 'expected_plain.txt'), 'utf-8')
+    .trim()
 
-  test('YAML files (.yml)', () => {
-    const file1 = path.join(inputDir, 'file1.yml')
-    const file2 = path.join(inputDir, 'file2.yml')
-    const actual = genDiff(file1, file2, 'plain').trim()
-    expect(actual).toBe(expectedPlain)
-  })
-
-  test('YAML files (.yaml)', () => {
-    const file1 = path.join(inputDir, 'file1.yaml')
-    const file2 = path.join(inputDir, 'file2.yaml')
-    const actual = genDiff(file1, file2, 'plain').trim()
+  test.each([
+    ['JSON files', 'file1.json', 'file2.json'],
+    ['YAML files (.yml)', 'file1.yml', 'file2.yml'],
+    ['YAML files (.yaml)', 'file1.yaml', 'file2.yaml'],
+  ])('%s', (_, file1, file2) => {
+    const filepath1 = path.join(inputDir, file1)
+    const filepath2 = path.join(inputDir, file2)
+    const actual = genDiff(filepath1, filepath2, 'plain').trim()
     expect(actual).toBe(expectedPlain)
   })
 })
 
 describe('json format', () => {
+  const expectedJson = fs
+    .readFileSync(path.join(expectedDir, 'expected_json.txt'), 'utf-8')
+    .trim()
+
   test('JSON files', () => {
-    const file1 = path.join(inputDir, 'file1.json')
-    const file2 = path.join(inputDir, 'file2.json')
-    const actual = genDiff(file1, file2, 'json').trim()
-    const expected = fs
-      .readFileSync(path.join(expectedDir, 'expected_json.txt'), 'utf-8')
-      .trim()
-    expect(JSON.parse(actual)).toEqual(JSON.parse(expected))
+    const filepath1 = path.join(inputDir, 'file1.json')
+    const filepath2 = path.join(inputDir, 'file2.json')
+    const actual = genDiff(filepath1, filepath2, 'json').trim()
+    expect(JSON.parse(actual)).toEqual(JSON.parse(expectedJson))
   })
 })

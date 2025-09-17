@@ -21,7 +21,7 @@ const buildDiffTree = (obj1, obj2) => {
     }
 
     // Оба значения — объекты
-    if (_.isObject(val1) && _.isObject(val2)) {
+    if (_.isPlainObject(val1) && _.isPlainObject(val2)) {
       return {
         key,
         status: 'nested',
